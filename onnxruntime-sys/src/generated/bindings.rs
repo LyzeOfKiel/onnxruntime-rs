@@ -21,3 +21,9 @@ include!(concat!(
     env!("CARGO_MANIFEST_DIR"),
     "/src/generated/windows/x86_64/bindings.rs"
 ));
+
+#[cfg(all(target_os = "linux", target_arch = "arm"))]
+include!(concat!(
+    env!("CARGO_MANIFEST_DIR"),
+    "/src/generated/linux/arm/bindings.rs"
+));

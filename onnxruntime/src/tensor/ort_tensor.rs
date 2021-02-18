@@ -49,13 +49,13 @@ where
 
         let shape: Vec<i64> = array.shape().iter().map(|d: &usize| *d as i64).collect();
         let shape_ptr: *const i64 = shape.as_ptr();
-        let shape_len = array.shape().len() as u64;
+        let shape_len = array.shape().len() as u32;
 
         let status = unsafe {
             g_ort().CreateTensorWithDataAsOrtValue.unwrap()(
                 memory_info.ptr,
                 tensor_values_ptr,
-                (array.len() * std::mem::size_of::<T>()) as u64,
+                (array.len() * std::mem::size_of::<T>()) as u32,
                 shape_ptr,
                 shape_len,
                 T::tensor_element_data_type(),
